@@ -1,0 +1,18 @@
+.nav{
+    width: 95%;
+    margin: auto;
+}
+.navCh{
+    display:grid;
+    grid-template-columns: 20% 60%  20%;
+}
+.navMenu{
+    display: grid;
+    align-content: center;
+}
+.navUl{
+    display:flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}

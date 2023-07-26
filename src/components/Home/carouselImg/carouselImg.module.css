@@ -1,0 +1,67 @@
+.popularMovieDeails {
+  position: absolute;
+  padding: 5rem;
+  bottom: 0px;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.popularMovieDeails:hover {
+  opacity: 1;
+}
+.title {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #fff;
+}
+.release_date {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #fff;
+}
+.vote_average {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #fff;
+}
+.volte_average > svg > path {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.length {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  width: 40%;
+  text-align: justify;
+}
+img {
+  background: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: calc(0.5rem + 1.3vw);
+  }
+  .release_date {
+    font-size: calc(0.5rem + 1.3vw);
+  }
+  .vote_average {
+    font-size: calc(0.5rem + 1.3vw);
+  }
+  .volte_average > svg > path {
+    font-size: calc(0.5rem + 1.3vw);
+  }
+  .length {
+    font-size: calc(0.1rem + 1.3vw);
+    width: 70vw;
+  }
+  
+}

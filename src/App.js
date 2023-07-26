@@ -1,29 +1,35 @@
-
+import {  RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header/Header";
+import RootElement from "./components/RootElement/RootElement";
+import Home from "./components/Home/Home";
+import Movie from "./components/Movie/Movie";
+import MovieList from "./components/MovieList/MovieList";
 
 function App() {
-//   const fetch = require("node-fetch");
 
-//   const url = "https://api.themoviedb.org/3/tv/popular";
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       accept: "application/json",
-//       Authorization:
-//         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTdhZGE3ZGEwNTUwMzA1ZWJlNDkwOGQwMTE5MjA4ZSIsInN1YiI6IjY0YmY4OGQ4NmVlM2Q3MDBjN2ZhZWI3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHQuASSrLyneq6icrZkIZI0XwXNz8ybf60GvnxWMNRg",
-//     },
-//   };
-
-//   fetch(url, options)
-//     .then((res) => res.json())
-//     .then((json) => console.log(json))
-//     .catch((err) => console.error("error:" + err));
-
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootElement />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/movie/:id",
+          element: <Movie />,
+        },
+        {
+          path: "/movieList/:type",
+          element: <MovieList />,
+        }
+      ],
+    },
+  ]);
   return (
     <div className="App">
-      
-      <Header />
+      <RouterProvider router={router} />
     </div>
   );
 }

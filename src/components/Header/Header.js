@@ -17,13 +17,13 @@ export default function Header() {
                             <NavLink className={({isActive})=>isActive?classes.active:undefined} to="/">Home</NavLink>
                         </li>
                         <li>
-                            <Link to={`/movieList/popular`}>Popular</Link>
+                            <Link to={`/movieList/popular` } className={({isActive})=>isActive?classes.active:undefined}>Popular</Link>
                         </li>
                         <li>
-                            <Link to="/movieList/top_rated">Top Rated</Link>
+                            <Link className={({isActive})=>isActive?classes.active:undefined}  to="/movieList/top_rated">Top Rated</Link>
                         </li>
                         <li>
-                            <Link to="/movieList/upcoming">Upcoming</Link>
+                            <Link className={({isActive})=>isActive?classes.active:undefined}  to="/movieList/upcoming">Upcoming</Link>
                         </li>
                     </ul>
                 </div>

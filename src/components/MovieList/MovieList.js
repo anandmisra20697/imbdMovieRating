@@ -17,8 +17,8 @@ export default function MovieList() {
             const response = await fetch(url, options);
             const data = await response.json();
             setMovie([...data.results]);
-            console.log([...data.results]);
-        }
+
+        }        
 
         useEffect(() => {
             fecthCall();

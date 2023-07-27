@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import classes from './movieList.module.css';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 export default function MovieList() {
     const params = useParams();
-    const [movie,setMovie] = useState(null); 
+    const [movie,setMovie] = useState(null);
+    const [loading,setLoading] = useState(true);
     const fetch = require('node-fetch');
 
     const url = `https://api.themoviedb.org/3/movie/${params.type}`;
@@ -22,7 +24,9 @@ export default function MovieList() {
 
         useEffect(() => {
             fecthCall();
-            
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
         }, [params.type])
         useEffect(() => {}, [movie])
   return (
@@ -31,6 +35,13 @@ export default function MovieList() {
       {movie &&
         movie.map((movie, index) => {
           return (
+            loading ?
+            <div key={index} className={classes.loading}>
+              <SkeletonTheme color="#202020" highlightColor="#444">
+                <Skeleton count={20} duration={2} width={200} height={300} />
+              </SkeletonTheme>
+            </div>
+            :
             <Link key={index}  to={`/movie/${movie.id}`}>
             <div className={classes.popularCol}>
               <img

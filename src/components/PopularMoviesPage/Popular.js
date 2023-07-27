@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import classes from "./popular.module.css";
 import { Link } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 export default function Popular() {
   const fetch = require("node-fetch");
   const [popularMovies, setPopularMovies] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const url = "https://api.themoviedb.org/3/movie/popular";
   const options = {
@@ -17,33 +21,43 @@ export default function Popular() {
   const fecthCall = async () => {
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log([data]);
     setPopularMovies([...data.results]);
+    // setLoading(false);
   };
 
   useEffect(() => {
+    // setLoading(true);
     fecthCall();
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
 
   return (
     <>
       <h2 className={classes.title}>Popular</h2>
-    <div className={classes.PopularRow}>
-      {popularMovies &&
-        popularMovies.map((movie, index) => {
-          return (
-            <Link key={index}  to={`/movie/${movie.id}`}>
-            <div className={classes.popularCol}>
-              <img
-                className="rounded p-0"
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt={movie.title}
-              />
-            </div>
-            </Link>
-          );
-        })}
-    </div>
+      <div className={classes.PopularRow}>
+        {popularMovies &&
+          popularMovies.map((movie, index) => {
+            return loading ? (
+              <div key={index} className={classes.loading}>
+                <SkeletonTheme color="#202020" highlightColor="#444">
+                  <Skeleton count={20} duration={2} width={200} height={300} />
+                </SkeletonTheme>
+              </div>
+            ) : (
+              <Link key={movie.id} to={`/movie/${movie.id}`}>
+                <div className={classes.popularCol}>
+                  <img
+                    className="rounded p-0"
+                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </div>
+              </Link>
+            );
+          })}
+      </div>
     </>
   );
 }

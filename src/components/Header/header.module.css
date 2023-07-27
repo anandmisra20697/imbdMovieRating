@@ -46,7 +46,27 @@ a.active{
     color: rgb(245, 25, 25) !important;
     text-decoration: underline;
 }
-/* .active:active{
-    color: rgb(245, 25, 25);
-    text-decoration: underline;
-} */
+@media screen and (max-width: 768px){
+    .navCh{
+        grid-template-columns: 1fr;
+    }
+    .navCh>h1{
+        /* display: none; */
+        text-align: center;
+    }
+    .navMenu{
+        /* display: none; */
+        /* text-align: center; */
+    }
+    .account{
+        display: none;
+    }
+    .navUl{
+        display: flex;
+        justify-content: space-between;
+    }
+    .navUl>li>a{
+        font-size: 1rem;
+    }
+}
+    

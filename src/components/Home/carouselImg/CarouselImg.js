@@ -42,10 +42,10 @@ export default function CarouselImg() {
         showThumbs={false}
       >
         {popularMovies &&
-          popularMovies.map((movie) => {
+          popularMovies.map((movie,index) => {
             return (
-              <>
-                <div key={movie.id}>
+              <div key={index}>
+                <div >
                   <img style={{ width: "100vw" ,height:"auto%",position:"center"}}
                     src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                     alt={movie.title}
@@ -63,28 +63,9 @@ export default function CarouselImg() {
                     {movie.overview}
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
-        {/* <div>
-          <img
-            src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/83b50bc7a3004f3a.jpg?q=20"
-            alt="Nothing Phone 1"
-          />
-          <p>this is first page</p>
-        </div>
-        <div>
-          <img
-            src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/352e6f0f8034fab5.jpg?q=20"
-            alt="Flight booking"
-          />
-        </div>
-        <div>
-          <img
-            src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/4cd6690ef44564f3.jpg?q=20"
-            alt="Flight booking 2"
-          />
-        </div> */}
       </Carousel>
     </section>
   );

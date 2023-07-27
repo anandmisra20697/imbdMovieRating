@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import classes from './movieList.module.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Footer from '../Footer/Footer';
 export default function MovieList() {
     const params = useParams();
     const [movie,setMovie] = useState(null);
@@ -27,10 +28,10 @@ export default function MovieList() {
             setTimeout(() => {
                 setLoading(false);
             }, 2000);
-        }, [params.type])
+        }, [])
         useEffect(() => {}, [movie])
   return (
-    <div>
+    <Fragment>
       <div className={classes.PopularRow}>
       {movie &&
         movie.map((movie, index) => {
@@ -54,6 +55,7 @@ export default function MovieList() {
           );
         })}
     </div>
-    </div>
+    <Footer/>
+    </Fragment>
   )
 }

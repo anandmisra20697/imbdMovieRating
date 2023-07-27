@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import classes from "./movie.module.css";
 import StarIcon from "@mui/icons-material/Star";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 
 export default function Movie() {
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const params = useParams();
   const [movie, setMovie] = useState(null);
+  const [loading,setLoading] = useState(true);
   const fetch = require("node-fetch");
   const url = `https://api.themoviedb.org/3/movie/${params.id}?api_key=2a7ada7da0550305ebe4908d0119208e`;
   const options = {
@@ -16,6 +20,14 @@ export default function Movie() {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTdhZGE3ZGEwNTUwMzA1ZWJlNDkwOGQwMTE5MjA4ZSIsInN1YiI6IjY0YmY4OGQ4NmVlM2Q3MDBjN2ZhZWI3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RHQuASSrLyneq6icrZkIZI0XwXNz8ybf60GvnxWMNRg",
     },
   };
+
+  function getCurrentDimension(){
+    console.log(window.innerWidth);
+    return {
+      	width: window.innerWidth,
+    }
+}
+
   const fetchCall = async () => {
     const response = await fetch(url, options);
     const data = await response.json();
@@ -23,11 +35,30 @@ export default function Movie() {
   };
 
   useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension())
+    }
+    window.addEventListener('resize', updateDimension);
+    
+    return(() => {
+        window.removeEventListener('resize', updateDimension);
+    })
+  }, [screenSize])
+
+  useEffect(() => {
     fetchCall();
+    setTimeout(() => {
+      setLoading(false);
+    }
+    , 2000);
   }, []);
+  
   return (
     <div>
       <div className={classes.backdrop}>
+        {loading?<SkeletonTheme color="#202020" highlightColor="#444">
+          <Skeleton count={1} duration={2} width="100%" height="600px" />
+        </SkeletonTheme>:
         <img
           className={classes.backdrop_img}
           src={`https://image.tmdb.org/t/p/original/${
@@ -35,14 +66,19 @@ export default function Movie() {
           }`}
           alt={movie && movie.title}
         />
+        }
       </div>
       <div className={classes.thumbnail}>
+        {loading&&<SkeletonTheme color="#202020" highlightColor="#444">
+          <Skeleton count={1} duration={2} width={screenSize>678?"300px":"200px"} height={screenSize>678?"600px":"300px"} />
+        </SkeletonTheme>}
+        {!loading&& 
         <img
           src={`https://image.tmdb.org/t/p/original/${
             movie && movie.poster_path
           }`}
           alt={movie && movie.poster_path}
-        />
+        />}
         <div className={classes.thumbnail_intro}>
           <div>
             <h1 className={classes.thumbnail_title}>{movie && movie.title}</h1>

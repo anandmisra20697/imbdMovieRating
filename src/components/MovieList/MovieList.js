@@ -40,7 +40,7 @@ export default function MovieList() {
             loading ?
             <div key={index} className={classes.loading}>
               <SkeletonTheme color="#202020" highlightColor="#444">
-                <Skeleton count={20} duration={2} width={200} height={300} />
+                <Skeleton count={1} duration={2} width={200} height={300} />
               </SkeletonTheme>
             </div>
             :

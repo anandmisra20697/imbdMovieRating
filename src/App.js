@@ -4,6 +4,7 @@ import RootElement from "./components/RootElement/RootElement";
 import Home from "./components/Home/Home";
 import Movie from "./components/Movie/Movie";
 import MovieList from "./components/MovieList/MovieList";
+import ErrorElement from "./ErrorElement/ErrorElement";
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     {
       path: "/",
       element: <RootElement />,
+      errorElement:<ErrorElement/>,
       children: [
         {
           index: true,

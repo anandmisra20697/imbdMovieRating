@@ -24,11 +24,12 @@ export default function MovieList() {
         }        
 
         useEffect(() => {
+          setLoading(true);
             fecthCall();
             setTimeout(() => {
                 setLoading(false);
             }, 2000);
-        }, [])
+        }, [params.type])
         useEffect(() => {}, [movie])
   return (
     <Fragment>

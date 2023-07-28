@@ -3,6 +3,8 @@ import { Link,  useParams } from "react-router-dom";
 import classes from "./movie.module.css";
 import StarIcon from "@mui/icons-material/Star";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import IndianCurrencyFormatter from "../IndianCurrencyFormate/IndianCurrencyFormatter";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 
 export default function Movie() {
@@ -22,7 +24,7 @@ export default function Movie() {
   };
 
   function getCurrentDimension(){
-    console.log(window.innerWidth);
+
     return {
       	width: window.innerWidth,
     }
@@ -89,7 +91,7 @@ export default function Movie() {
             </div>
             <div className={classes.thumbnail_rating}>
               Rating:{movie && Math.round(movie.vote_average)}
-              <StarIcon />
+              <StarIcon sx={{fontSize: { xs: 15, sm: 20, md: 25, lg: 30 },marginBottom:{ xs: 0.5, sm: 0.7, md: 0.9, lg: 1 }}} />
             </div>
             <div className={classes.thumbnail_status_and_language}>
               <div className={classes.thumbnail_status}>
@@ -121,8 +123,8 @@ export default function Movie() {
           
           <div className={classes.uls}>
             <ul className={classes.ul}>
-              <li>Budget:{movie && movie.budget}</li>
-              <li>Revenue:{movie && movie.revenue}</li>
+              <li>Budget:{movie&&<IndianCurrencyFormatter amount={movie && movie?.budget}/>}</li>
+              <li>Revenue:{movie&&<IndianCurrencyFormatter amount={movie && movie?.revenue}/>}</li>
               <li>Runtime:{movie && movie.runtime}</li>
               <li>Release Date:{movie && movie.release_date}</li>
               <li>Certification:{movie && movie.adult ? "A" : "U"}</li>
@@ -175,10 +177,10 @@ export default function Movie() {
               to={`${movie && movie.homepage}`}
               className={classes.homePageButton}
             >
-              Home Page
+              Home Page <span><OpenInNewIcon sx={{fontSize: { xs: 15, sm: 20, md: 25, lg: 30 },marginBottom:{ xs: 0.5, sm: 0.7, md: 0.9, lg: 1 }}}/></span>
             </Link>
           <Link target="_blank" className={classes.imdbButton} to={`https://www.imdb.com/title/${movie&&movie.imdb_id}/`}>
-              IMDb
+              IMDb <span><OpenInNewIcon sx={{fontSize: { xs: 15, sm: 20, md: 25, lg: 30 },marginBottom:{ xs: 0.5, sm: 0.7, md: 0.9, lg: 1 }}}/></span>
             </Link>
           </div>
       </div>

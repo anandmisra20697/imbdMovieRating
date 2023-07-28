@@ -140,6 +140,11 @@
   font-size: 1.2rem;
   transition: all 0.3s ease-in-out;
 }
+.imdbButton:hover{
+  background-color: #fff;
+  color: #0e2348;
+  transition: ease-in-out 1s;
+}
 .linkButtons{
   display: flex;
   justify-content: right;
@@ -182,8 +187,10 @@
   .imdbButton{
     margin: 5px 5px;
     text-align: center;
+  } 
+  .ul>li{
+    font-size: calc(0.5rem + 2vw);
   }
-
 }
 @media screen and (min-width:769px) and (max-width:1200px) {
   .thumbnail_status_and_language{
@@ -195,4 +202,8 @@
   .thumbnail>img{
     width: 100%;
   }
+  .genres{
+    margin-top: calc(0.5rem + 1vw);
+  }
+
 }

@@ -7,3 +7,33 @@ body{
   background-color: rgba(0, 0, 0, 0.904);
   color: white;
 }
+.Padding>input{
+  border: none;
+  border-radius: 7px;
+  padding: 4px;
+  position: absolute;
+  top: 22px;
+  background-color: #f0ebeb;
+}
+@media screen and (min-width: 769px) and (max-width : 900px){
+  .Padding>input{
+    border: none;
+    border-radius: 7px;
+    padding: 4px;
+    position: absolute;
+    top: 22px;
+    background-color: #f0ebeb;
+    display: none;
+  }
+}
+@media screen and (max-width: 768px){
+  .Padding>input{
+    border: none;
+    border-radius: 7px;
+    padding: 4px;
+    position: absolute;
+    top: 22px;
+    background-color: #f0ebeb;
+    display: none;
+}
+}

@@ -29,3 +29,9 @@
 .loading{
     margin: 3px;
 }
+.login{
+  display: flex;
+}
+.log{
+    flex: 1;
+}

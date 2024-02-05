@@ -17,7 +17,8 @@ export default function Header() {
                             <NavLink className={({isActive})=>isActive?classes.active:undefined} to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`/movieList/popular` } className={({isActive})=>isActive?classes.active:undefined}>Popular</NavLink>
+                            <NavLink to={`/movieList/popular` } className={({isActive})=>isActive?
+                              classes.active:undefined}>Popular</NavLink>
                         </li>
                         <li>
                             <NavLink className={({isActive})=>isActive?classes.active:undefined}  to="/movieList/top_rated">Top Rated</NavLink>
@@ -25,13 +26,21 @@ export default function Header() {
                         <li>
                             <NavLink className={({isActive})=>isActive?classes.active:undefined}  to="/movieList/upcoming">Upcoming</NavLink>
                         </li>
+
                     </ul>
                 </div>
-                <div className={classes.account}>
-                    <AccountCircleIcon sx={{
-                        fontSize: 40,
-                    }} />
+                <div className='login'>
+                    <div className='log'>
+                       <div className='Padding'> <input type='search' placeholder='Search Movie'></input></div>
+                        <div className={classes.account}>
+                            <AccountCircleIcon sx={{
+                                fontSize: 40,
+                            }} />
+
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </nav>
     </header>

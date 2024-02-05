@@ -21,7 +21,7 @@ export default function MovieList() {
             const data = await response.json();
             setMovie([...data.results]);
 
-        }        
+        }
 
         useEffect(() => {
           setLoading(true);
